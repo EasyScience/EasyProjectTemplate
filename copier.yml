@@ -1,0 +1,23 @@
+_subdirectory: template
+
+projectname:
+  type: str
+  help: What is your project name?
+prettyname:
+  default: '{{projectname|capitalize}}'
+  type: str
+  help: What is your project name in title case?
+orgname:
+  default: EasyScience
+  type: str
+  help: What is your organization name?
+description:
+  type: str
+  help: Brief description?
+min_python:
+  type: str
+  help: Minimum Python version?
+max_python:
+  type: str
+  help: Maximum Python version that is known to work?
+year: 2024

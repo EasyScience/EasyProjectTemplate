@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  formatting:
+    name: Formatting and static analysis
+    runs-on: 'ubuntu-22.04'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: --all-files
+      - uses: pre-commit-ci/lite-action@v1.0.2
+        if: always()
+        with:
+          msg: Apply automatic formatting
+
+  tests:
+    name: Tests
+    needs: formatting
+    runs-on: 'ubuntu-22.04'
+    env:
+      DUMMYPROJECTPATH: './test-dummy'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - run: pip install copier
+      - run: pip install tox
+      - run: |
+            copier copy ./ ${DUMMYPROJECTPATH} \
+              -l \
+              -d description="Dummy project to test the template." \
+              -d projectname="testdummy" \
+              -d max_python="3.12" \
+              -d min_python="3.9"
+      - run: git init  # ``setuptools`` complains if it is not a git repository.
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      - run: sed -i '/dependencies = \[/a\    "numpy"' pyproject.toml
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      - run: tox -e deps
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      - run: tox -e py39
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      - run: tox -e static
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      - run: tox -e docs
+        working-directory: ${{ env.DUMMYPROJECTPATH }}
