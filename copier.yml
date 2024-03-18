@@ -6,11 +6,11 @@ projectname:
 prettyname:
   default: '{{projectname|capitalize}}'
   type: str
-  help: What is the project's pretty name in title case?
+  help: What is the project's pretty name in title case (whitespace is allowed)?
 packagename:
   default: '{{projectname|lower}}'
   type: str
-  help: What is the project's python package name?
+  help: What is the project's python package name (should be small caps)?
 orgname:
   default: EasyScience
   type: str

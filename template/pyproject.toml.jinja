@@ -59,21 +59,21 @@ docs = [
 ]
 
 [project.urls]
-homepage = "https://docs.easyreflectometry.org"
-documentation = "https://docs.easyreflectometry.org"
+homepage = "https://docs.{{packagename}}.org"
+documentation = "https://docs.{{packagename}}.org"
 
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["EasyReflectometry"]
+packages = [{{packagename}}]
 
 [tool.coverage.run]
-source = ['EasyReflectometry']
+source = [{{packagename}}]
 
 [tool.github.info]
 organization = 'easyScience'
-repo = 'EasyReflectometryLib'
+repo = {{packagename}}Lib
 
 [tool.ruff]
 line-length = 127
@@ -145,7 +145,3 @@ commands =
     pip install -e '.[dev]'
     pytest --cov --cov-report=xml
 """
-
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
