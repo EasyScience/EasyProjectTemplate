@@ -2,11 +2,15 @@ _subdirectory: template
 
 projectname:
   type: str
-  help: What is your project name?
+  help: What is the project name?
 prettyname:
   default: '{{projectname|capitalize}}'
   type: str
-  help: What is your project name in title case?
+  help: What is the project's pretty name in title case?
+packagename:
+  default: '{{projectname|lower}}'
+  type: str
+  help: What is the project's python package name?
 orgname:
   default: EasyScience
   type: str
