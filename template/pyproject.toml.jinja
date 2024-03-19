@@ -1,28 +1,29 @@
 [build-system]
-requires = ["hatchling<=1.21.0"]  
+requires = [
+    "hatchling<=1.21.0",
+    "setuptools-git-versioning",
+]  
 build-backend = "hatchling.build"
+
+[tool.setuptools-git-versioning]
+enabled = true
 
 [project]
 name = "{{projectname}}"
-version = "0.0.4-dev"
+dynamic = ["version"]
 description = "{{description}}"
 readme = "README.md"
-authors = [
-    {name = "Andrew R. McCluskey", email = "andrew.mccluskey@ess.eu"}, 
-    {name = "Andrew Sazonov"}, 
-    {name = "Simon Ward"},
-    {name = "Andreas Pedersen", email = "andreas.pedersen@ess.eu"}
-]
-maintainers = [
-    {name = "Andrew R. McCluskey", email = "andrew.mccluskey@ess.eu"},
-    {name = "Andreas Pedersen", email = "andreas.pedersen@ess.eu"}
-]
+authors = [{name = "EasyScience contributors"}]
 license = { file = "LICENSE" }
 classifiers = [
-    "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+{%- for version in range(min_python.split(".")[1] | int, max_python.split(".")[1] | int + 1) %}
+    "Programming Language :: Python :: 3.{{version}}",
+{%- endfor %}
     "Development Status :: 3 - Alpha"
 ]
 requires-python = ">={{min_python}},<{{max_python}}"
@@ -66,10 +67,10 @@ documentation = "https://docs.{{packagename}}.org"
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = [{{packagename}}]
+packages = ["src/{{packagename}}"]
 
 [tool.coverage.run]
-source = [{{packagename}}]
+source = ["src/{{packagename}}"]
 
 [tool.github.info]
 organization = 'easyScience'
@@ -118,12 +119,16 @@ force-single-line = true
 legacy_tox_ini = """
 [tox]
 isolated_build = True
-envlist = py{39,310,311}
+{%- set jinja_envlist = [] %}
+{%- for version in range(min_python.split(".")[1] | int, max_python.split(".")[1] | int + 1) %}
+    {%- set jinja_envlist = jinja_envlist.append("3." + version|string) %}
+{%- endfor %}
+envlist = py{% raw %}{{% endraw %}{{jinja_envlist|join(",")}}{% raw %}}{% endraw %}
 [gh-actions]
 python =
-    3.9: py39
-    3.10: py310
-    3.11: py311
+    {%- for version in range(min_python.split(".")[1] | int, max_python.split(".")[1] | int + 1) %}
+        3.{{version}}: py3{{version}}   
+    {%- endfor %}
 [gh-actions:env]
 PLATFORM =
     ubuntu-latest: linux
