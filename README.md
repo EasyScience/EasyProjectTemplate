@@ -17,5 +17,5 @@ git push origin master
 
 Alternatively, the add remote step can be invoked using https:
 ```sh
-git remote add origin https://github.com:EasyScience/NewEasyProject.git
+git remote add origin https://github.com/EasyScience/NewEasyProject.git
 ```
