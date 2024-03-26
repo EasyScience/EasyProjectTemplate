@@ -29,10 +29,7 @@ classifiers = [
 requires-python = ">={{min_python}},<{{max_python}}"
 dependencies = [
     "easyScienceCore>=0.3.1",
-    "refnx>=0.1.15",
-    "refl1d>=0.8.14",
     "scipp>=23.12.0",
-    "orsopy>=0.0.4"
 ]
 
 [project.optional-dependencies]
@@ -63,8 +60,14 @@ docs = [
 homepage = "https://docs.{{packagename}}.org"
 documentation = "https://docs.{{packagename}}.org"
 
+[tool.hatch.version]
+path = "src/{{packagename}}/__version__.py"
+
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+packages = ["src"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/{{packagename}}"]
@@ -74,7 +77,7 @@ source = ["src/{{packagename}}"]
 
 [tool.github.info]
 organization = 'easyScience'
-repo = {{packagename}}Lib
+repo = "{{packagename}}"
 
 [tool.ruff]
 line-length = 127
