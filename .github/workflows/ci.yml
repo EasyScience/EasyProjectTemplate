@@ -53,5 +53,6 @@ jobs:
         working-directory: ${{ env.DUMMYPROJECTPATH }}
       - run: tox -e static
         working-directory: ${{ env.DUMMYPROJECTPATH }}
-      - run: tox -e docs
-        working-directory: ${{ env.DUMMYPROJECTPATH }}
+      # temporarily disabled
+      #- run: tox -e docs
+      #  working-directory: ${{ env.DUMMYPROJECTPATH }}

@@ -1,10 +1,10 @@
 # This pipeline
-# - builds developer documentation 
+# - builds developer documentation
 # - pushes documentation to gh-pages branch of the same repository
 #
 # Deployment is handled by pages-build-deployment bot
 
-name: Build Documentation and Push to gh-pages Branch 
+name: Build Documentation and Push to gh-pages Branch
 
 # Controls when the workflow will run
 on:
