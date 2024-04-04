@@ -36,6 +36,7 @@ jobs:
           python-version: '3.9'
       - run: pip install copier
       - run: pip install tox
+      - run: pip install pyyaml
       - run: |
             copier copy ./ ${DUMMYPROJECTPATH} \
               -l \

@@ -10,7 +10,7 @@ prettyname:
 packagename:
   default: '{{projectname|lower}}'
   type: str
-  help: What is the project's python package name (should be small caps)?
+  help: What is the project's python package name (should be small caps)? The name should not contain the trailing "Lib" if creating a library.
 orgname:
   default: EasyScience
   type: str
