@@ -53,3 +53,12 @@ Under `Protect matching branches` setting, select
 
       You can either use all checks, or select `required` checks only.
       The list of jobs you can select as `required` checks will be shown only after they are triggered at least once within a week.
+
+### pre-commit configuration
+
+Pre-commit hooks are scripts that are run before a commit is made to the repository.
+The hooks can include code validation checks for formatting errors, test execution, and more.
+Currently, the `.pre-commit-config.yaml` file contains a small number of hooks related to style and mergability checks
+If you want your installation to make use of the pre-commit hooks, you should create `.pre-commit-config` in your new templated project,
+following suggestions from the [pre-commit site](https://pre-commit.com/#new-hooks).
+
