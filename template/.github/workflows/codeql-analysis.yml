@@ -1,4 +1,7 @@
-# This pipeline
+# CodeQL is the code analysis engine developed by GitHub to automate security checks.
+#
+# For more information see: https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql
+
 
 name: "CodeQL"
 

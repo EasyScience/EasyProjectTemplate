@@ -3,6 +3,8 @@
 # - pushes documentation to gh-pages branch of the same repository
 #
 # Deployment is handled by pages-build-deployment bot
+#
+# For more information see: https://docs.github.com/en/pages/getting-started-with-github-pages
 
 name: Build Documentation and Push to gh-pages Branch
 
