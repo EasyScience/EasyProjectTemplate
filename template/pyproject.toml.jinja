@@ -52,8 +52,9 @@ dev = [
 docs = [
     "myst_parser",
     "nbsphinx",
-    "sphinx_book_theme",
     "sphinx_autodoc_typehints",
+    "sphinx_book_theme",
+    "sphinx-copybutton",
     "toml"
 ]
 
@@ -89,7 +90,7 @@ exclude = [
 [tool.ruff.format]
 quote-style = "single"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # allow asserts in test files
 "*test_*.py" = ["S101"]
 
